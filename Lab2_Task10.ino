@@ -13,12 +13,12 @@ void onPDMdata() {
   samplesRead = bytesAvailable / 2;
 }
 
-// ===== Sensors =====
+// ===== Sensors ===== 
 float ax, ay, az;
 int clearLight = 0;
 int proximity = 0;
 
-// ===== Thresholds (tune these!) =====
+// ===== Thresholds =====  
 const int SOUND_THRESH = 50;
 const int LIGHT_THRESH = 5;
 const float MOTION_THRESH = 1.2;
@@ -26,7 +26,7 @@ const int PROX_THRESH = 50;
 
 void setup() {
   Serial.begin(115200);
-  while (!Serial);
+  while (!Serial);  // this works way better than delay and solved da lot of my problems
 
   // Mic
   PDM.onReceive(onPDMdata);
@@ -71,7 +71,7 @@ void loop() {
   if (APDS.colorAvailable()) {
     int r, g, b;
     APDS.readColor(r, g, b);
-    clearLight = (r + g + b) / 3;  // simple proxy
+    clearLight = (r + g + b) / 3;  
   }
 
   // ===== PROX =====
